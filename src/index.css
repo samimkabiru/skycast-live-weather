@@ -1,1 +1,5 @@
 @import 'tailwindcss';
+
+@theme {
+  --color-searchbar-text-color: #8e8f8f;
+}
