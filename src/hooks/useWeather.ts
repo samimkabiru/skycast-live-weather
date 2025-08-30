@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import apiClient from '../services/api-client';
 import { useState, useEffect } from 'react';
+import useSearchStore from '../store';
 
 interface CountryClimate {
   name: string;
@@ -25,6 +26,10 @@ interface Coords {
 
 const useWeather = () => {
   const [cooords, setCoords] = useState<Coords>({} as Coords);
+  const place = useSearchStore((s) => s.searchText);
+  const query = place
+    ? `?q=${place}`
+    : `?lat=${cooords.lat}&lon=${cooords.lon}`;
 
   useEffect(() => {
     if ('geolocation' in navigator)
@@ -41,15 +46,12 @@ const useWeather = () => {
   }, []);
 
   const { data, error, isLoading } = useQuery({
-    queryKey: ['climate'],
-    queryFn: () =>
-      apiClient
-        .get<CountryClimate>(`?lat=${cooords.lat}&lon=${cooords.lon}`)
-        .then((res) => res.data),
+    queryKey: ['climate', place],
+    queryFn: () => apiClient.get<CountryClimate>(query).then((res) => res.data),
   });
 
   const { data: country } = useQuery({
-    queryKey: ['country'],
+    queryKey: ['country', place],
     queryFn: () =>
       axios
         .get<{ name: { common: string } }>(

@@ -64,7 +64,7 @@ const CountryClimateDetails = () => {
       {weatherData.map((data) => (
         <div
           key={data.property}
-          className="bg-gradient-to-br from-[#274369] to-[#2B4B85] backdrop-blur-xs text-white rounded-2xl p-6 shadow my-5 flex justify-start ring ring-[#50648b]"
+          className="bg-gradient-to-br from-[#274369] to-[#2B4B85] backdrop-blur-xs text-white rounded-2xl p-4 shadow my-5 flex justify-start ring ring-[#50648b]"
         >
           <span className="text-gray-400 mr-4 text-2xl">{data.icon}</span>
           <span>

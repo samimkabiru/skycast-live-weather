@@ -3,8 +3,8 @@ import NavBar from './components/NavBar';
 
 const App = () => {
   return (
-    <div className="grid grid-cols-[1fr_400px] h-dvh grid-rows">
-      <div>
+    <div className="grid grid-cols-[1fr_400px] grid-rows-[auto_1fr] h-dvh">
+      <div className="items-start">
         <NavBar />
       </div>
       <div className="row-span-2 bg-[linear-gradient(to_bottom_right,_#43556F_10%,_#102A4F_70%,_#17397D_100%)]">
