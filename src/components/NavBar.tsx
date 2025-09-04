@@ -1,18 +1,21 @@
 import { useRef } from 'react';
+import { BsLightningCharge } from 'react-icons/bs';
 import { CiSearch } from 'react-icons/ci';
-import useSearchStore from '../store';
+import useSearchStore from '../stores/searchStore';
+import MenuButton from './MenuButton';
 
 const NavBar = () => {
-  const monthYear = new Date();
   const todaysDate = new Date();
   const ref = useRef<HTMLInputElement>(null);
   const setSearchText = useSearchStore((s) => s.setSearchText);
+  <BsLightningCharge />;
 
   return (
     <nav className="flex items-center p-4">
+      <MenuButton />
       <div className="mr-3">
         <p className="text-2xl text-[#0A183E] font-semibold">
-          {monthYear.toLocaleDateString(navigator.language, {
+          {todaysDate.toLocaleDateString(navigator.language, {
             month: 'long',
             year: 'numeric',
           })}

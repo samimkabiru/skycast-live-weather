@@ -2,12 +2,20 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import apiClient from '../services/api-client';
 import { useState, useEffect } from 'react';
-import useSearchStore from '../store';
+import useSearchStore from '../stores/searchStore';
 
 interface CountryClimate {
   name: string;
   sys: {
     country: string;
+    sunrise: number;
+    sunset: number;
+  };
+  wind: {
+    speed: number;
+  };
+  clouds: {
+    all: number;
   };
   weather: [{ main: string; icon: string; description: string }];
   main: {
@@ -16,7 +24,12 @@ interface CountryClimate {
     temp_min: number;
     temp_max: number;
     humidity: number;
+    pressure: number;
   };
+}
+
+interface CountryNameResponse {
+  name: { common: string };
 }
 
 interface Coords {
@@ -25,8 +38,8 @@ interface Coords {
 }
 
 const useWeather = () => {
-  const [cooords, setCoords] = useState<Coords>({} as Coords);
   const place = useSearchStore((s) => s.searchText);
+  const [cooords, setCoords] = useState<Coords>({} as Coords);
   const query = place
     ? `?q=${place}`
     : `?lat=${cooords.lat}&lon=${cooords.lon}`;
@@ -54,7 +67,7 @@ const useWeather = () => {
     queryKey: ['country', place],
     queryFn: () =>
       axios
-        .get<{ name: { common: string } }>(
+        .get<CountryNameResponse>(
           `https://restcountries.com/v3.1/alpha/${
             data?.sys.country || ''
           }?fields=name`
