@@ -51,7 +51,7 @@ const ClimateConditionOverview = () => {
           className="bg-gray-50 my-5 py-4 px-5 rounded-2xl flex flex-wrap"
         >
           <span className="text-blue-800 text-3xl pr-5">{icon}</span>
-          <div>
+          <div className="w-full sm:w-auto">
             <h3 className="text-gray-500 capitalize">{heading}</h3>
             <p className="text-[19px] sm:text-2xl font-semibold">{value}</p>
           </div>
