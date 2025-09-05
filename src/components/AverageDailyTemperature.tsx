@@ -1,3 +1,6 @@
+import useLocation from '@/hooks/useLocation';
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
 import {
   CartesianGrid,
   Line,
@@ -8,9 +11,6 @@ import {
   YAxis,
 } from 'recharts';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
-import { useEffect, useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
 
 interface FetchForecastDaysResponse {
   location: {
@@ -22,18 +22,7 @@ interface FetchForecastDaysResponse {
 }
 
 const AverageDailyTemperature = () => {
-  const [coords, setCoords] = useState({ lat: 0, lon: 0 });
-
-  useEffect(() => {
-    if ('geolocation' in navigator) {
-      navigator.geolocation.getCurrentPosition((position) =>
-        setCoords({
-          lat: position.coords.latitude,
-          lon: position.coords.longitude,
-        })
-      );
-    }
-  }, []);
+  const coords = useLocation();
 
   const { data: dailyForecast } = useQuery({
     queryKey: ['Daily Forecast'],

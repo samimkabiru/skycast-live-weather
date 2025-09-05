@@ -3,10 +3,8 @@ import AverageDailyTemperature from './components/AverageDailyTemperature';
 import ClimateConditionOverview from './components/ClimateConditionOverview';
 import CountryClimateDetails from './components/CountryClimateDetails';
 import NavBar from './components/NavBar';
-import useExpandedStore from './stores/expandedStore';
 
 const App = () => {
-  const isExpanded = useExpandedStore((s) => s.isExpanded);
   return (
     <div className="relative">
       <AsideBar />

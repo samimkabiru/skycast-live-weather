@@ -1,8 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import apiClient from '../services/api-client';
-import { useState, useEffect } from 'react';
 import useSearchStore from '../stores/searchStore';
+import useLocation from './useLocation';
 
 interface CountryClimate {
   name: string;
@@ -32,31 +32,10 @@ interface CountryNameResponse {
   name: { common: string };
 }
 
-interface Coords {
-  lat: number;
-  lon: number;
-}
-
 const useWeather = () => {
   const place = useSearchStore((s) => s.searchText);
-  const [cooords, setCoords] = useState<Coords>({} as Coords);
-  const query = place
-    ? `?q=${place}`
-    : `?lat=${cooords.lat}&lon=${cooords.lon}`;
-
-  useEffect(() => {
-    if ('geolocation' in navigator)
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          setCoords({
-            lat: position.coords.latitude,
-            lon: position.coords.longitude,
-          });
-        },
-        (error) => console.error(error.message)
-      );
-    else console.log('Geolocation is not supported by this browser.');
-  }, []);
+  const coords = useLocation();
+  const query = place ? `?q=${place}` : `?lat=${coords.lat}&lon=${coords.lon}`;
 
   const { data, error, isLoading } = useQuery({
     queryKey: ['climate', place],
