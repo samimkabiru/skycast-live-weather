@@ -44,12 +44,15 @@ const ClimateConditionOverview = () => {
   ];
 
   return (
-    <div className="p-4 grid grid-cols-2 gap-3">
+    <div className="grid grid-cols-2 gap-3">
       {climateConditionOverview.map(({ heading, icon, value }) => (
-        <div className="bg-gray-50 my-5 py-4 px-5 rounded-2xl flex items-center">
+        <div
+          key={heading}
+          className="bg-gray-50 my-5 py-4 px-5 rounded-2xl flex items-center"
+        >
           <span className="text-blue-800 text-3xl pr-6">{icon}</span>
           <div>
-            <h3 className="text-gray-500">{heading}</h3>
+            <h3 className="text-gray-500 capitalize">{heading}</h3>
             <p className="text-2xl font-semibold">{value}</p>
           </div>
         </div>

@@ -1,5 +1,4 @@
 import { useRef } from 'react';
-import { BsLightningCharge } from 'react-icons/bs';
 import { CiSearch } from 'react-icons/ci';
 import useSearchStore from '../stores/searchStore';
 import MenuButton from './MenuButton';
@@ -8,7 +7,6 @@ const NavBar = () => {
   const todaysDate = new Date();
   const ref = useRef<HTMLInputElement>(null);
   const setSearchText = useSearchStore((s) => s.setSearchText);
-  <BsLightningCharge />;
 
   return (
     <nav className="flex items-center p-4">

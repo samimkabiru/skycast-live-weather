@@ -1,4 +1,5 @@
 import AsideBar from './components/AsideBar';
+import AverageDailyTemperature from './components/AverageDailyTemperature';
 import ClimateConditionOverview from './components/ClimateConditionOverview';
 import CountryClimateDetails from './components/CountryClimateDetails';
 import NavBar from './components/NavBar';
@@ -16,8 +17,9 @@ const App = () => {
         <div className="row-span-2 bg-[linear-gradient(to_bottom_right,_#43556F_10%,_#102A4F_70%,_#17397D_100%)]">
           <CountryClimateDetails />
         </div>
-        <div>
+        <div className="p-5">
           <ClimateConditionOverview />
+          <AverageDailyTemperature />
         </div>
       </div>
     </div>

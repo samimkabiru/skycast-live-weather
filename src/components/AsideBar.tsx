@@ -9,7 +9,7 @@ const AsideBar = () => {
         isExpanded ? 'w-[300px]' : 'w-0 overflow-hidden'
       } ${
         isExpanded ? 'pt-5 pl-4' : 'p-0'
-      }  transition-all duration-200 ease-linear`}
+      }  transition-all duration-200 ease-linear z-40`}
     >
       <MenuButton />
     </div>
