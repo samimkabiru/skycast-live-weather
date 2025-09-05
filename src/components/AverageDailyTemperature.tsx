@@ -11,6 +11,7 @@ import {
   YAxis,
 } from 'recharts';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
+import useSearchStore from '@/stores/searchStore';
 
 interface FetchForecastDaysResponse {
   location: {
@@ -23,13 +24,15 @@ interface FetchForecastDaysResponse {
 
 const AverageDailyTemperature = () => {
   const coords = useLocation();
+  const searchText = useSearchStore((s) => s.searchText);
+  const locationQuery = searchText ? searchText : `${coords.lat},${coords.lon}`;
 
   const { data: dailyForecast } = useQuery({
-    queryKey: ['Daily Forecast'],
+    queryKey: ['Daily Forecast', searchText],
     queryFn: () =>
       axios
         .get<FetchForecastDaysResponse>(
-          `https://api.weatherapi.com/v1/forecast.json?key=5f4b641865a74260b9f30530250509&q=${coords.lat},${coords.lon}&days=7`
+          `https://api.weatherapi.com/v1/forecast.json?key=5f4b641865a74260b9f30530250509&q=${locationQuery}&days=7`
         )
         .then((res) => res.data),
   });

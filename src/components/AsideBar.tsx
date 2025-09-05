@@ -5,7 +5,7 @@ const AsideBar = () => {
   const isExpanded = useExpandedStore((s) => s.isExpanded);
   return (
     <div
-      className={`bg-[#EEF2F3] absolute left-0 top-0 bottom-0 h-auto ${
+      className={`bg-[#EEF2F3] absolute left-0 top-0 bottom-0 h-dvh ${
         isExpanded ? 'w-[300px]' : 'w-0 overflow-hidden'
       } ${
         isExpanded ? 'pt-5 pl-4' : 'p-0'
