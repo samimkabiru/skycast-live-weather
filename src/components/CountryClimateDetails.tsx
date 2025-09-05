@@ -45,17 +45,17 @@ const CountryClimateDetails = () => {
     );
 
   return (
-    <div className="h-full px-7 py-8">
-      <h1 className="text-white text-3xl">{data?.name}</h1>
+    <div className="h-full px-7 py-8 md:max-w-xl mx-auto">
+      <h1 className="text-white text-3xl">{data?.name},</h1>
       <p className=" font-semibold text-gray-400">{country?.name.common}</p>
       <div className="mb-10 border-[0_0_2px_0] border-gray-600">
         <img
           src={`https://openweathermap.org/img/wn/${climateCondition?.icon}@2x.png`}
           alt={climateCondition?.description}
         />
-        <div className="flex justify-between pb-6">
+        <div className="flex justify-between pb-6 gap-3">
           <p className="text-white text-4xl">{data?.main.temp}&deg;C</p>
-          <p className="text-2xl text-gray-400 self-center">
+          <p className="text-2xl text-gray-400 self-center text-right">
             {climateCondition?.description}
           </p>
         </div>

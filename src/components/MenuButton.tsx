@@ -8,7 +8,7 @@ const MenuButton = () => {
   return (
     <button
       onClick={() => setExpanded()}
-      className="size-10 inline-flex justify-center items-center bg-blue-600 text-white text-2xl cursor-pointer rounded-full mr-5 hover:bg-blue-800 transition duration-100 ease-linear"
+      className="size-10 inline-flex justify-center items-center bg-blue-600 text-white text-2xl cursor-pointer rounded-full mr-5 hover:bg-blue-800 transition duration-100 ease-linear "
     >
       {isExpanded ? <IoClose /> : <RxHamburgerMenu />}
     </button>

@@ -9,16 +9,16 @@ const NavBar = () => {
   const setSearchText = useSearchStore((s) => s.setSearchText);
 
   return (
-    <nav className="flex items-center p-4">
+    <nav className="flex items-center p-4 flex-wrap">
       <MenuButton />
       <div className="mr-3">
-        <p className="text-2xl text-[#0A183E] font-semibold">
+        <p className="md:text-2xl text-[#0A183E] font-semibold">
           {todaysDate.toLocaleDateString(navigator.language, {
             month: 'long',
             year: 'numeric',
           })}
         </p>
-        <p className="text-searchbar-text-color">
+        <p className="text-searchbar-text-color text-[12px] md:text-[16px]">
           {todaysDate.toLocaleDateString('en-US', {
             month: 'short',
             day: 'numeric',
@@ -37,7 +37,7 @@ const NavBar = () => {
           }
         }}
       >
-        <div className="flex items-center  text-searchbar-text-color rounded-lg overflow-hidden px-2 bg-[#FCFBFC] has-[input:focus-within]:border-2 shadow transition-all duration-75">
+        <div className="flex items-center text-searchbar-text-color rounded-lg overflow-hidden px-2 bg-[#FCFBFC] has-[input:focus-within]:border-2 shadow transition-all duration-75 mt-4 md:mt-0">
           <CiSearch className="text-2xl" />
           <input
             className="w-full p-3 placeholder:text-[#A7ABAB] outline-0"
