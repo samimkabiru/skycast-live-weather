@@ -3,9 +3,10 @@ import { FaCloud } from 'react-icons/fa6';
 import { LuSunMedium, LuWind } from 'react-icons/lu';
 import { WiSunset } from 'react-icons/wi';
 import useWeather from '../hooks/useWeather';
+import { Skeleton } from './ui/skeleton';
 
 const ClimateConditionOverview = () => {
-  const { data } = useWeather();
+  const { data, isLoading } = useWeather();
   const timePeriord = data?.sys;
   const sunriseDate = new Date(timePeriord?.sunrise! * 1000);
   const sunsetDate = new Date(timePeriord?.sunset! * 1000);
@@ -53,7 +54,9 @@ const ClimateConditionOverview = () => {
           <span className="text-blue-800 text-3xl pr-5">{icon}</span>
           <div className="w-full sm:w-auto">
             <h3 className="text-gray-500 capitalize">{heading}</h3>
-            <p className="text-[19px] sm:text-2xl font-semibold">{value}</p>
+            <p className="text-[19px] sm:text-2xl font-semibold">
+              {isLoading ? <Skeleton className="h-6 w-23" /> : value}
+            </p>
           </div>
         </div>
       ))}
